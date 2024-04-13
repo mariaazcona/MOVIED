@@ -9,6 +9,7 @@ class Title(models.Model):
     title = models.CharField(max_length=100)
     award = models.ManyToManyField('Award')
     release_date = models.DateField()
+    cast = models.ManyToManyField('Name')
     genre = models.ManyToManyField('Genre')
     producer = models.CharField(max_length=50)
 
