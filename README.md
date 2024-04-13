@@ -1,5 +1,5 @@
 # DELIVERABLE REPORT 1
-### AUTHORS: Maria Azcona Garcia, Neus Fernández Valls, Eric Hernández Rodríguez & Marçal Piro Patau
+### AUTHORS: Maria Azcona Garcia, Neus Fernández Valls, Eric Hernández Rodríguez & Marçal Piró Patau
 
 <br>
 
