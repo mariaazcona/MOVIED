@@ -8,6 +8,16 @@ nav .navbar-brand
     font-size: xx-large;
 }
 
+.boto
+{
+    color: #00000080;
+    border: none;
+    background: none;
+    padding: 8px;
+    font: inherit;
+    cursor: pointer;
+}
+
 nav .navbar-brand .blue
 {
     color: #537fbe;

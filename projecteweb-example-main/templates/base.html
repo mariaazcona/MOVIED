@@ -19,17 +19,34 @@
     <body>
         <nav class="navbar navbar-expand-md navbar-light bg-light border">
             <a class="navbar-brand" href="/">
-                <span class="blue">MO</span><span class="red">VI</span><span class="yellow">ED</span><span class="green"> :)</span>
+                <span class="blue">MO</span><span class="red">VI</span><span class="yellow">ED</span><span class="green" style="margin-right: 350px;"> :)</span>
+            </a>
+            <a href="/">
+                <span style="color: black">Rate & learn about movies</span>
             </a>
             <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar">
                     <ul class="navbar-nav ml-auto mt-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/accounts/signup">Sign Up</a>
+                        <li>
+                            <form method="post">
+                                {% csrf_token %}
+                                <a href="/accounts/signup" class="boto" type="submit">Sign Up</a>
+                            </form>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="/accounts/login">Log In</a></li>
+                        <li>
+                            <form method="post">
+                                {% csrf_token %}
+                                <a href="/accounts/login" class="boto" type="submit">Log In</a>
+                            </form>
+                        </li>
+                        <li>
+                            <form action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <button class="boto" type="submit">Log Out</button>
+                            </form>
+                        </li>
                     </ul>
             </div>
         </nav>
