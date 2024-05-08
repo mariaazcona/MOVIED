@@ -1,13 +1,40 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <script>
+    var cinemas = [
+        {% for cinema in cinemas %}
+        {
+            'type': 'Feature',
+            'properties': {
+              'description': '<strong>{{cinema.name}}</strong><p>Telefono:{{cinema.phone }}</p><p>Mail:{{cinema.email }}</p><p>Web:{{cinema.website }}</p><p>City:{{cinema.city }}</p><a href="/cinema/{{cinema.id_cinema}}/">Ver más</a>'
+
+            },
+        },
+        {% endfor %}
+    ];
+  </script>
     {% if user.is_authenticated %}
         <form action="/home" method="post" class="form-group1">
             <a class="navbar-brand">Hi {{ user.username }}!</a>
-        </form>
-        <form action="{% url 'logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Log Out</button>
+
+            <h1>Cinemas</h1>
+            {% if cinemas %}
+                <ul>
+                  {% for cinema in cinemas %}
+                      <li>
+                          <div>
+                              <h3><a href="/cinema/{{ cinema.id_cinema }}/">{{ cinema.name }}</a></h3>
+                              <p>Phone: <a href="tel:{{ cinema.phone }}">{{ cinema.phone }}</a></p>
+                              <p>Mail: <a href="mailto:{{ cinema.email }}">{{ cinema.email }}</a></p>
+                              <p>Web: <a href="{{ cinema.website }}">{{ cinema.website }}</a></p>
+                          </div>
+                      </li>
+                  {% endfor %}
+              </ul>
+            {% else %}
+                <p>No available cinemas</p>
+            {% endif %}
         </form>
     {% else %}
         <body>

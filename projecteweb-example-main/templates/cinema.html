@@ -1,0 +1,23 @@
+<html lang="en" xmlns:itemscope="http://www.w3.org/1999/xhtml" xmlns:itemtype="http://schema.org">
+
+{% extends "base.html" %}
+{% block title %} Movied - {{ cinema.name }}{% endblock %}
+
+{% block content %}
+<body>
+   <span vocab="http://schema.org/" typeof="Restaurant">
+       <div class="form-group1">
+            <h1 property="name" itemprop="name">Billboard {{ cinema.name }}</h1>
+            {% for movie in movies %}
+                <div>
+                    <h3 property="name" itemprop="name">{{ movie.name }}</h3>
+                    <p property="description" itemprop="description">Overview: {{ movie.overview }}</p>
+                    <p property="description" itemprop="description">Price: {{ movie.price }}</p>
+                    <a href="/tickets" type="submit">Book tickets</a>
+                </div>
+            {% endfor %}
+        </div>
+    </span>
+</body>
+</html>
+{% endblock %}

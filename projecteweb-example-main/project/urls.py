@@ -17,10 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+import accounts.views as views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", TemplateView.as_view(template_name="home.html"), name="home"),  # Create a new path for the home page
     path("accounts/", include("accounts.urls")),  # It is very important to include this BEFORE the built-in authentication URLs
     path("accounts/", include("django.contrib.auth.urls")),  # Add the path for the built-in authentication URLs
+    path("movied/", include("movied.urls"))
 ]

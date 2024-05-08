@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+<html>
+<head>
+	<title>Cinemas</title>
+</head>
+<body>
+	<h1>Cinemas</h1>
+	{% if cinemas %}
+		<ul>
+		{% for cinema in cinemas %}
+			<li>{{ cinema.name }}</li>
+            <li>{{ cinema.city }}</li>
+			<li>{{ cinema.phone }}</li>
+			<li>{{ cinema.email }}</li>
+			<li>{{ cinema.website }}</li>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<p>No available cinemas</p>
+	{% endif %}
+</body>
+</html>
+{% endblock %}
