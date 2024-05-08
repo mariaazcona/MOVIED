@@ -5,7 +5,6 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 class Cinema(models.Model):
     name = models.CharField(max_length=50)
-    id_cinema = models.AutoField(primary_key=True)
     phone = models.CharField(max_length=50)
     email = models.CharField(max_length=50)
     website = models.CharField(max_length=50)
@@ -25,10 +24,15 @@ class Movie(models.Model):
     id_movie = models.AutoField(primary_key=True)
     id_cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
+    year = models.CharField(max_length=10)
+    duration = models.CharField(max_length=10, default="-")
     price = models.CharField(max_length=50)
-    overview = models.CharField(max_length=200)
+    overview = models.CharField(max_length=500)
     genre = models.CharField(max_length=50)
-    ranking = models.FloatField(max_length=50, null=True)
+    poster = models.CharField(max_length=100, default=None)
+
+    def __str__(self):
+        return self.name
 
 
 class Reservation(models.Model):
@@ -36,11 +40,14 @@ class Reservation(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, default=None, null=True)
     date = models.DateTimeField()
     id_client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    id_cinema = models.ForeignKey('Cinema', on_delete=models.CASCADE)
+    id_cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.id_reservation
 
 
 class ReservationMovie(models.Model):
     reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE)
     id_reservation = models.AutoField(primary_key=True)
     id_movie = models.ForeignKey(Movie, on_delete=models.CASCADE, null=True)  # Hacer el campo nullable si es necesario
-    num_tickets = models.IntegerField()
+    num_tickets = models.IntegerField(default=None)

@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 import accounts.views as views
+import movied.views as v
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("accounts.urls")),  # It is very important to include this BEFORE the built-in authentication URLs
     path("accounts/", include("django.contrib.auth.urls")),  # Add the path for the built-in authentication URLs
+    path("", v.home, name="home"),
     path("movied/", include("movied.urls"))
 ]

@@ -3,6 +3,5 @@ from movied import views as v
 
 
 urlpatterns = [
-    path("", v.home, name="home"),
     path("cinema/<int:id>/", v.cinema_detail, name='cinema-detail'),
 ]
