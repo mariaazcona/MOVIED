@@ -14,7 +14,7 @@ class Client(models.Model):
 class Movie(models.Model):
     id_movie = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
-    year = models.CharField(max_length=10)
+    year = models.CharField(max_length=20)
     duration = models.CharField(max_length=10, default="-")
     price = models.CharField(max_length=50)
     overview = models.CharField(max_length=500)

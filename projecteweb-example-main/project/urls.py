@@ -24,6 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("accounts.urls")),  # It is very important to include this BEFORE the built-in authentication URLs
     path("accounts/", include("django.contrib.auth.urls")),  # Add the path for the built-in authentication URLs
-    path("", v.home, name="home"),
-    path("movied/", include("movied.urls"))
+    path("movied/", include("movied.urls")),
+    path("", TemplateView.as_view(template_name="home.html"), name="home")
 ]
