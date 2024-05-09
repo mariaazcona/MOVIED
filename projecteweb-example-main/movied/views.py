@@ -33,4 +33,4 @@ def add_movies_api(request):
 @login_required(login_url='login')
 def list_movies(request):
     movies = Movie.objects.all()
-    return render(request, "home.html", {"movies": movies})
+    return render(request, "list_movies.html", {"movies": movies})

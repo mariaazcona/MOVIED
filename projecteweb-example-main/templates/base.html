@@ -29,24 +29,27 @@
             </button>
             <div class="collapse navbar-collapse" id="navbar">
                     <ul class="navbar-nav ml-auto mt-2">
-                        <li>
-                            <form method="post">
-                                {% csrf_token %}
-                                <a href="/accounts/signup" class="boto" type="submit">Sign Up</a>
-                            </form>
-                        </li>
-                        <li>
-                            <form method="post">
-                                {% csrf_token %}
-                                <a href="/accounts/login" class="boto" type="submit">Log In</a>
-                            </form>
-                        </li>
-                        <li>
-                            <form action="{% url 'logout' %}" method="post">
-                                {% csrf_token %}
-                                <button class="boto" type="submit">Log Out</button>
-                            </form>
-                        </li>
+                        {% if not user.is_authenticated %}
+                            <li>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <a href="{% url 'signup' %}" class="boto" type="submit">Sign Up</a>
+                                </form>
+                            </li>
+                            <li>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <a href="{% url 'login' %}" class="boto" type="submit">Log In</a>
+                                </form>
+                            </li>
+                        {% else %}
+                            <li>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <a href="{% url 'logout' %}" class="boto" type="submit">Log Out</a>
+                                </form>
+                            </li>
+                        {% endif %}
                     </ul>
             </div>
         </nav>

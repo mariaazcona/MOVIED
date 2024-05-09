@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <form action="/home" method="post" class="form-group1">
+            <a class="navbar-brand">Hi {{ user.username }}!</a>
+
+            <h1>Movies</h1>
+            {% if movies %}
+                <ul>
+                    {% for movie in movies %}
+                        <li>
+                            <h2>{{ movie.title }}</h2>
+                            <p>Year: {{ movie.year }}</p>
+                            <p>Duration: {{ movie.duration }}</p>
+                            <p>Price: {{ movie.price }}</p>
+                            <p>Genre: {{ movie.genre }}</p>
+                            <p>Description: {{ movie.overview }}</p>
+                            {% if movie.poster %}
+                                <img src="{{ movie.poster }}" alt="{{ movie.name }} Poster">
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No available movies</p>
+            {% endif %}
+        </form>
+    {% else %}
+        <body>
+        <form action="/home" method="post" class="form-group1">
+            <a class="navbar-brand">You Are Not Logged</a>
+        </form>
+        </body>
+    {% endif %}
+{% endblock %}
