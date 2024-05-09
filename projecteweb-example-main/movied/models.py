@@ -2,15 +2,6 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 
-# Create your models here.
-class Cinema(models.Model):
-    name = models.CharField(max_length=50)
-    phone = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
-    website = models.CharField(max_length=50)
-    city = models.CharField(max_length=50)
-
-
 class Client(models.Model):
     id_client = models.AutoField(primary_key=True)
     username = models.CharField(max_length=50)
@@ -22,7 +13,6 @@ class Client(models.Model):
 
 class Movie(models.Model):
     id_movie = models.AutoField(primary_key=True)
-    id_cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     year = models.CharField(max_length=10)
     duration = models.CharField(max_length=10, default="-")
@@ -40,7 +30,6 @@ class Reservation(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, default=None, null=True)
     date = models.DateTimeField()
     id_client = models.ForeignKey(Client, on_delete=models.CASCADE)
-    id_cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.id_reservation

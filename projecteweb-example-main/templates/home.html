@@ -7,7 +7,7 @@
         {
             'type': 'Feature',
             'properties': {
-              'description': '<strong>{{cinema.name}}</strong><p>Telefono:{{cinema.phone }}</p><p>Mail:{{cinema.email }}</p><p>Web:{{cinema.website }}</p><p>City:{{cinema.city }}</p><a href="/cinema/{{cinema.id_cinema}}/">Ver más</a>'
+              'description': '<strong>{{cinema.name}}</strong><p>Telefono:{{cinema.phone }}</p><p>Mail:{{cinema.email }}</p><p>Web:{{cinema.website }}</p><p>City:{{cinema.city }}</p><a href="cinema-detail">Ver más</a>'
 
             },
         },
@@ -24,7 +24,7 @@
                   {% for cinema in cinemas %}
                       <li>
                           <div>
-                              <h3><a href="/cinema/{{ cinema.id_cinema }}/">{{ cinema.name }}</a></h3>
+                              <h3><a href="cinema-detail">{{ cinema.name }}</a></h3>
                               <p>Phone: <a href="tel:{{ cinema.phone }}">{{ cinema.phone }}</a></p>
                               <p>Mail: <a href="mailto:{{ cinema.email }}">{{ cinema.email }}</a></p>
                               <p>Web: <a href="{{ cinema.website }}">{{ cinema.website }}</a></p>

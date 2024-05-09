@@ -11,7 +11,7 @@ API = 'https://api.andrespecht.dev/movies'
 # Cinemas
 def cinema_list(request):
     all_cinemas = Cinema.objects.all()
-    return render(request, "/cinemas.html", {"cinemas": all_cinemas})
+    return render(request, "cinemas.html", {"cinemas": all_cinemas})
 
 
 def cinema_detail(request, id):
@@ -27,4 +27,4 @@ def cinema_detail(request, id):
 @login_required(login_url='login')
 def home(request):
     all_cinemas = Cinema.objects.all()
-    return render(request, 'home.html', {"cinemas": all_cinemas})
+    return render(request, "home.html", {"cinemas": all_cinemas})
