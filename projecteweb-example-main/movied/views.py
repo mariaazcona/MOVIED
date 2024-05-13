@@ -14,10 +14,9 @@ def add_movies_api(request):
 
     if response.status_code == 200:
         movie_data = response.json()
-
         for movie_info in movie_data['response']:
             movie = Movie(
-                name=movie_info['title'],
+                name=movie_data['title'],
                 year=str(movie_info['year']),
                 duration=movie_info['runningTime'],
                 price=random.randint(6, 10),
@@ -34,3 +33,12 @@ def add_movies_api(request):
 def list_movies(request):
     movies = Movie.objects.all()
     return render(request, "list_movies.html", {"movies": movies})
+
+def movie_reservation(request, id_movie):
+    movie = get_object_or_404(Movie, id_movie=id_movie)
+
+    context = {
+        'movie': movie,
+    }
+
+    return render(request, 'movie.html', context)

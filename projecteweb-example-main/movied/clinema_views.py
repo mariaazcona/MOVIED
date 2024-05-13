@@ -11,5 +11,5 @@ def cinema_detail(request, id):
         'cinema': cinema,
         'movies': movies
     }
-    return render(request, 'cinema.html', context)
+    return render(request, 'movie.html', context)
 """

@@ -7,7 +7,7 @@
 <body>
    <span vocab="http://schema.org/" typeof="Restaurant">
        <div class="form-group1">
-            <h1 property="name" itemprop="name">Billboard {{ cinema.name }}</h1>
+            <h1 property="name" itemprop="name">{{ movie.name }}</h1>
             {% for movie in movies %}
                 <div>
                     <h3 property="name" itemprop="name">{{ movie.name }}</h3>
