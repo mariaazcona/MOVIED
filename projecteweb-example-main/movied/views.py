@@ -17,7 +17,7 @@ def add_movies_api(request):
 
         for movie_info in movie_data['response']:
             movie = Movie(
-                name=movie_data['title'],
+                name=movie_info['title'],
                 year=str(movie_info['year']),
                 duration=movie_info['runningTime'],
                 price=random.randint(6, 10),

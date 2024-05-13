@@ -5,32 +5,54 @@
         <form action="/home" method="post" class="form-group1">
             <a class="navbar-brand">Hi {{ user.username }}!</a>
 
-            <h1>Movies</h1>
-            {% if movies %}
-                <ul>
+            <div class="grid-container">
+                {% if movies %}
                     {% for movie in movies %}
-                        <li>
-                            <h2>{{ movie.title }}</h2>
-                            <p>Year: {{ movie.year }}</p>
-                            <p>Duration: {{ movie.duration }}</p>
-                            <p>Price: {{ movie.price }}</p>
-                            <p>Genre: {{ movie.genre }}</p>
-                            <p>Description: {{ movie.overview }}</p>
-                            {% if movie.poster %}
-                                <img src="{{ movie.poster }}" alt="{{ movie.name }} Poster">
-                            {% endif %}
-                        </li>
+                        {% if forloop.counter0|divisibleby:6 %}
+                            </div><div class="grid-row">
+                        {% endif %}
+                        <div class="grid-item" style="text-align: center; font-size: smaller; width: calc(16.6666% - 10px);">
+                            <img src="{{ movie.poster }}" alt="{{ movie.name }} Poster" style="max-width: 100%; height: auto; max-height: 150px;">
+                            <p>{{ movie.name }}</p>
+                        </div>
+                        {% if forloop.last or forloop.counter|divisibleby:6 %}
+                            </div>
+                        {% endif %}
                     {% endfor %}
-                </ul>
-            {% else %}
-                <p>No available movies</p>
-            {% endif %}
+                {% else %}
+                    <p>No available movies</p>
+                {% endif %}
+            </div>
         </form>
     {% else %}
-        <body>
         <form action="/home" method="post" class="form-group1">
             <a class="navbar-brand">You Are Not Logged</a>
         </form>
-        </body>
     {% endif %}
+    
+    <style>
+        .grid-container {
+            display: grid;
+            gap: 10px;
+            background-color: white;
+            padding: 20px;
+        }
+
+        .grid-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .grid-item {
+            text-align: center;
+            font-size: smaller;
+        }
+
+        .grid-item img {
+            max-width: 100%;
+            height: auto;
+            max-height: 150px;
+        }
+    </style>
 {% endblock %}
