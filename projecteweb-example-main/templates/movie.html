@@ -1,23 +1,69 @@
-<html lang="en" xmlns:itemscope="http://www.w3.org/1999/xhtml" xmlns:itemtype="http://schema.org">
-
 {% extends "base.html" %}
-{% block title %} Movied - {{ cinema.name }}{% endblock %}
 
 {% block content %}
-<body>
-   <span vocab="http://schema.org/" typeof="Restaurant">
-       <div class="form-group1">
-            <h1 property="name" itemprop="name">{{ movie.name }}</h1>
-            {% for movie in movies %}
-                <div>
-                    <h3 property="name" itemprop="name">{{ movie.name }}</h3>
-                    <p property="description" itemprop="description">Overview: {{ movie.overview }}</p>
-                    <p property="description" itemprop="description">Price: {{ movie.price }}</p>
-                    <a href="/tickets" type="submit">Book tickets</a>
+    <div class="background-overlay"></div>
+    {% if movie %}
+        <div class="movie-details-container">
+            <h1 class="movie-title">{{ movie.name }}</h1>
+            <div class="movie-content">
+                <div class="movie-details">
+                    <p><strong>Year:</strong> {{ movie.year }}</p>
+                    <p><strong>Duration:</strong> {{ movie.duration }}</p>
+                    <p><strong>Price:</strong> {{ movie.price }}</p>
+                    <p><strong>Genre:</strong> {{ movie.genre }}</p>
+                    <p><strong>Description:</strong> {{ movie.overview }}</p>
                 </div>
-            {% endfor %}
+                <div class="movie-poster">
+                    <img src="{{ movie.poster }}" alt="{{ movie.name }} Poster">
+                </div>
+            </div>
         </div>
-    </span>
-</body>
-</html>
+    {% else %}
+        <p>Movie not found</p>
+    {% endif %}
+    
+    <style>
+        .movie-details-container {
+            overflow-x: auto;
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 600px;
+            height: auto;
+            display: inline-block;
+            border-radius: 10px;
+            border: 2px solid #000;
+        }
+        .movie-title {
+            font-size: 24px; /* Tamaño del título */
+            margin-bottom: 20px; /* Espacio entre el título y los detalles */
+        }
+        .movie-content {
+            display: flex; /* Para distribuir detalles y poster */
+            justify-content: space-between; /* Distribuir los elementos a los extremos */
+            width: 100%; /* Garantizar que la anchura sea completa */
+        }
+        .movie-details {
+            flex: 1; /* Para que ocupe el espacio disponible */
+            text-align: left; /* Texto centrado a la izquierda */
+        }
+        .movie-poster {
+            margin-left: 20px; /* Espacio entre los detalles y el póster */
+        }
+        .movie-poster img {
+            max-width: 100%;
+            height: auto;
+            max-height: 300px;
+        }
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.6); /* Blanco con 50% de opacidad */
+            z-index: -1; /* Colocar detrás de otros elementos */
+        }
+    </style>
 {% endblock %}

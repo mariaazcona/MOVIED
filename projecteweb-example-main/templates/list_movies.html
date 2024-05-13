@@ -1,41 +1,48 @@
 {% extends "base.html" %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-        <form action="/home" method="post" class="form-group1">
-            <a class="navbar-brand">Hi {{ user.username }}!</a>
+    <div class="background-overlay"></div>
+    <div class="greeting-container">
+        <a class="navbar-brand" style="font-size: larger; font-weight: bold;">Welcome, {{ user.username }}! Choose any film to make a reservation:</a>
+    </div>
 
-            <div class="grid-container">
-                {% if movies %}
-                    {% for movie in movies %}
-                        {% if forloop.counter0|divisibleby:6 %}
-                            </div><div class="grid-row">
-                        {% endif %}
-                        <div class="grid-item" style="text-align: center; font-size: smaller; width: calc(16.6666% - 10px);">
-                            <img src="{{ movie.poster }}" alt="{{ movie.name }} Poster" style="max-width: 100%; height: auto; max-height: 150px;">
-                            <p>{{ movie.name }}</p>
-                        </div>
-                        {% if forloop.last or forloop.counter|divisibleby:6 %}
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                {% else %}
-                    <p>No available movies</p>
+    <div class="grid-container">
+        <div class="grid-row">
+            {% for movie in movies %}
+                {% if forloop.counter0|divisibleby:6 %}
+                    </div><div class="grid-row">
                 {% endif %}
-            </div>
-        </form>
-    {% else %}
-        <form action="/home" method="post" class="form-group1">
-            <a class="navbar-brand">You Are Not Logged</a>
-        </form>
-    {% endif %}
-    
+                <div class="grid-item" style="text-align: center; font-size: smaller; width: calc(16.6666% - 10px);">
+                    <a href="{% url 'movie-reservation' movie.id_movie %}">
+                        <img src="{{ movie.poster }}" alt="{{ movie.name }} Poster" style="max-width: 100%; height: auto; max-height: 150px;">
+                    </a>
+                    <p>{{ movie.name }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
     <style>
         .grid-container {
             display: grid;
             gap: 10px;
             background-color: white;
             padding: 20px;
+            border: 2px solid #000;
+            overflow-x: auto;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .greeting-container {
+            background-color: lightblue;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra */
+            border: 2px solid #000;
+            width: 60%; /* Ajusta el ancho aquí */
+            display: inline-block;
+            margin-bottom: 10px;
         }
 
         .grid-row {
@@ -53,6 +60,16 @@
             max-width: 100%;
             height: auto;
             max-height: 150px;
+        }
+
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.6); /* Blanco con 50% de opacidad */
+            z-index: -1; /* Colocar detrás de otros elementos */
         }
     </style>
 {% endblock %}
