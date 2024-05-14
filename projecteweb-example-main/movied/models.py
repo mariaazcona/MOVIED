@@ -38,5 +38,5 @@ class Reservation(models.Model):
 class ReservationMovie(models.Model):
     reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE)
     id_reservation = models.AutoField(primary_key=True)
-    id_movie = models.ForeignKey(Movie, on_delete=models.CASCADE, null=True)  # Hacer el campo nullable si es necesario
+    id_movie = models.ForeignKey(Movie, on_delete=models.CASCADE, null=True)
     num_tickets = models.IntegerField(default=None)

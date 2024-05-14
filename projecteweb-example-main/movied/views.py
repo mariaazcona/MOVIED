@@ -34,6 +34,7 @@ def list_movies(request):
     movies = Movie.objects.all()
     return render(request, "list_movies.html", {"movies": movies})
 
+
 def movie_reservation(request, id_movie):
     movie = get_object_or_404(Movie, id_movie=id_movie)
 

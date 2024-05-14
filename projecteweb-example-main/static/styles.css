@@ -68,28 +68,3 @@ main img
     display: inline-block;
     border-radius: 10px;
 }
-.grid-container {
-    display: grid;
-    gap: 10px;
-    background-color: white;
-    padding: 20px;
-}
-
-.grid-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.grid-item {
-    text-align: center;
-    font-size: smaller;
-    width: calc(16.6666% - 10px); /* 6 items per row */
-}
-
-.grid-item img {
-    max-width: 100%;
-    height: auto;
-    max-height: 150px;
-}
-
