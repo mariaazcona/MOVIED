@@ -14,17 +14,19 @@ def add_movies_api(request):
 
     if response.status_code == 200:
         movie_data = response.json()
+        registered_movies = Movie.objects.all()
         for movie_info in movie_data['response']:
-            movie = Movie(
-                name=movie_info['title'],
-                year=str(movie_info['year']),
-                duration=movie_info['runningTime'],
-                price=random.randint(6, 10),
-                overview=movie_info['description'],
-                genre=', '.join(movie_info['genre']),
-                poster=movie_info['poster']
-            )
-            movie.save()
+            if movie_info['title'] not in registered_movies:
+                movie = Movie(
+                    name=movie_info['title'],
+                    year=str(movie_info['year']),
+                    duration=movie_info['runningTime'],
+                    price=random.randint(6, 10),
+                    overview=movie_info['description'],
+                    genre=', '.join(movie_info['genre']),
+                    poster=movie_info['poster']
+                )
+                movie.save()
 
     return redirect('home')
 

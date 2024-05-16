@@ -5,10 +5,9 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class Client(models.Model):
     id_client = models.AutoField(primary_key=True)
     username = models.CharField(max_length=50)
-    name = models.CharField(max_length=50)
-    phone = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
-    card_number = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.username
 
 
 class Movie(models.Model):
