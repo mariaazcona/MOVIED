@@ -23,6 +23,7 @@ class Reservation(models.Model):
     date = models.DateTimeField()
     id_client = models.ForeignKey(User, on_delete=models.CASCADE)
     num_tickets = models.IntegerField(default=None)
+    showtime = models.IntegerField(default=None)
 
     def __str__(self):
         return self.id_reservation

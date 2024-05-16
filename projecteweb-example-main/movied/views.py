@@ -5,6 +5,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import *
 import requests
 import random
+from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 API = 'https://api.andrespecht.dev/movies'
 
@@ -39,9 +41,25 @@ def list_movies(request):
 
 def movie_reservation(request, id_movie):
     movie = get_object_or_404(Movie, id_movie=id_movie)
-
     context = {
         'movie': movie,
     }
 
     return render(request, 'movie.html', context)
+
+
+def confirm_reservation(request):
+    if request.method == 'POST':
+        showtime = request.POST.get('showtime')
+        num_people = request.POST.get('num_people')
+        movie_id = request.POST.get('movie_id')
+        new_reservation = Reservation(
+            showtime=showtime,
+            num_tickets=num_people,
+            id_client=request.user,
+            movie=get_object_or_404(Movie, id_movie=movie_id),
+        )
+        new_reservation.save()
+        return HttpResponse(f"Reserva confirmada para {num_people} personas a las {showtime} horas para la película {movie.name}")
+    movies = Movie.objects.all()
+    return render(request, 'list_movies.html', {"movies": movies})
