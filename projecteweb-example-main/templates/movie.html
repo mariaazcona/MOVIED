@@ -16,64 +16,86 @@
                 <div class="movie-poster">
                     <img src="{{ movie.poster }}" alt="{{ movie.name }} Poster">
                 </div>
-                <h2>Reserve Your Tickets</h2>
-                <form method="post" action="{% url 'confirm-reservation' %}">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="showtime">Select Showtime:</label>
-                        <select id="showtime" name="showtime" required>
-                            <option value="" disabled selected>Select a time</option>
-                            <option value="18:00">18:00</option>
-                            <option value="20:00">20:00</option>
-                            <option value="22:00">22:00</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="num_people">Number of People:</label>
-                        <input type="number" id="num_people" name="num_people" min="1" max="10" required>
-                    </div>
-                    <button type="submit" class="reserve-button">Confirm Reservation</button>
-                </form>
             </div>
+            <h2 class="reservation-header">Book Your Tickets</h2>
+            <form method="post" action="{% url 'confirm-reservation' %}" id="reservation-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="showtime">Select Showtime:</label>
+                    <select id="showtime" name="showtime" required>
+                        <option value="" disabled selected>Select a time</option>
+                        <option value="18:00">18:00</option>
+                        <option value="20:00">20:00</option>
+                        <option value="22:00">22:00</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="num_people">Select tickets:</label>
+                    <input type="number" id="num_people" name="num_people" min="1" max="10" required>
+                </div>
+                <button type="submit" class="reserve-button">Confirm Reservation</button>
+            </form>
         </div>
     {% else %}
         <p>Movie not found</p>
     {% endif %}
-    
+
+    <script>
+        document.getElementById('reservation-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            alert('Reservation confirmed');
+            this.submit();
+        });
+    </script>
+
     <style>
         .movie-details-container {
             overflow-x: auto;
             text-align: center;
             background-color: white;
             padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 600px;
             height: auto;
             display: inline-block;
             border-radius: 10px;
             border: 2px solid #000;
         }
+
         .movie-title {
             font-size: 24px;
             margin-bottom: 20px;
         }
+
         .movie-content {
             display: flex;
+            flex-direction: row;
+            align-items: flex-start;
             justify-content: space-between;
             width: 100%;
         }
+
         .movie-details {
             flex: 1;
             text-align: left;
+            margin-right: 20px;
         }
+
         .movie-poster {
+            flex: 1;
             margin-left: 20px;
         }
+
         .movie-poster img {
             max-width: 100%;
             height: auto;
             max-height: 300px;
         }
+
+        .reservation-header {
+            margin-top: 40px;
+        }
+
         .background-overlay {
             position: fixed;
             top: 0;
