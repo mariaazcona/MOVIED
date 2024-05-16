@@ -18,7 +18,7 @@
                 </div>
             </div>
             <h2 class="reservation-header">Book Your Tickets</h2>
-            <form method="post" action="{% url 'confirm-reservation' movie.id_movie %}" id="reservation-form">
+            <form method="post" action="{% url 'confirm-reservation' id_cinema movie.id_movie %}" id="reservation-form">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="showtime">Select Showtime:</label>

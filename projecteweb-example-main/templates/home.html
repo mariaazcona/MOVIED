@@ -2,8 +2,8 @@
 
 {% block content %}
     <div class="background-overlay"></div>
-    <button style="font-size: 20px; padding: 10px 20px;"><a href="{% url 'list_movies' %}">Go to movie list</a></button> <!-- Botón más grande -->
-    <button style="font-size: 20px; padding: 10px 20px;"><a href="{% url 'list_reservations' %}">My reservations</a></button>
+    <button style="font-size: 20px; padding: 10px 20px;"><a href="{% url 'list-cinemas' %}">Go to movie list</a></button>
+    <button style="font-size: 20px; padding: 10px 20px;"><a href="{% url 'list-reservations' %}">My reservations</a></button>
     <style>
         .background-overlay {
             position: fixed;

@@ -7,8 +7,9 @@
             {% for reservation in reservations %}
                 <div class="reservation">
                     <h3>{{ reservation.movie.name }}</h3>
-                    <p><strong>Showtime:</strong> {{ reservation.showtime }}:00</p>
+                    <p><strong>Showtime:</strong> {{ reservation.showtime }}h00</p>
                     <p><strong>Number of Tickets:</strong> {{ reservation.num_tickets }}</p>
+                    <p><strong>Cinema:</strong> {{ reservation.cinema.name }}</p>
                 </div>
             {% endfor %}
         </div>

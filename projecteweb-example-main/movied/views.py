@@ -35,38 +35,65 @@ def add_movies_api(request):
     return redirect('home')
 
 
-def list_movies(request):
+def add_cinemas(request):
+    cinema1 = Cinema(
+        name="JCA Cinemes alpicat",
+        city="Lleida"
+    )
+    cinema1.save()
+    cinema2 = Cinema(
+        name="Cinemes Lauren",
+        city="Lleida"
+    )
+    cinema2.save()
+    cinema3 = Cinema(
+        name="Espai Funàtic",
+        city="Lleida"
+    )
+    cinema3.save()
+    return redirect('home')
+
+
+def list_movies(request, id_cinema):
     movies = Movie.objects.all()
-    return render(request, "list_movies.html", {"movies": movies})
+    return render(request, "list_movies.html", {"movies": movies, "id_cinema": id_cinema})
 
 
 @login_required(login_url='login')
-def movie_reservation(request, id_movie):
+def movie_reservation(request, id_cinema, id_movie):
     movie = get_object_or_404(Movie, id_movie=id_movie)
     context = {
         'movie': movie,
+        'id_cinema': id_cinema
     }
 
     return render(request, 'movie.html', context)
 
 
 @login_required(login_url='login')
-def confirm_reservation(request, id_movie):
+def confirm_reservation(request, id_cinema, id_movie):
     if request.method == 'POST':
         showtime = request.POST.get('showtime')
         num_people = request.POST.get('num_people')
         movie = get_object_or_404(Movie, id_movie=id_movie)
+        cinema = get_object_or_404(Cinema, id_cinema=id_cinema)
         new_reservation = Reservation(
             showtime=int(showtime),
             num_tickets=num_people,
             id_client=request.user,
             movie=movie,
+            cinema=cinema
         )
         new_reservation.save()
-    return redirect('list_movies')
+    return redirect('list_movies', id_cinema=id_cinema)
 
 
 @login_required(login_url='login')
 def list_reservations(request):
     reservations = Reservation.objects.filter(id_client=request.user.id)
     return render(request, "list_reservations.html", {"reservations": reservations})
+
+
+def list_cinemas(request):
+    cinemas = Cinema.objects.all()
+    return render(request, "list_cinemas.html", {"cinemas": cinemas})

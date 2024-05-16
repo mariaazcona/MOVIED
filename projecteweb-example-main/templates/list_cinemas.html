@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Cinema list</h1>
+    {% if cinemas %}
+        <div class="cinema-container">
+            {% for cinema in cinemas %}
+                <div class="cinema">
+                    <a href="{% url 'list_movies' cinema.id_cinema %}"><button> {{ cinema.name }} </button></a>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No available cinemas.</p>
+    {% endif %}
+    <style>
+        .cinema {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cinema-container {
+            margin-top: 20px;
+            background-color: white;
+        }
+    </style>
+{% endblock %}

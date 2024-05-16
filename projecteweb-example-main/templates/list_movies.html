@@ -13,7 +13,7 @@
                     </div><div class="grid-row">
                 {% endif %}
                 <div class="grid-item" style="text-align: center; font-size: smaller; width: calc(16.6666% - 10px);">
-                    <a href="{% url 'movie-reservation' movie.id_movie %}">
+                    <a href="{% url 'movie-reservation' id_cinema movie.id_movie %}">
                         <img src="{{ movie.poster }}" alt="{{ movie.name }} Poster" style="max-width: 100%; height: auto; max-height: 150px;">
                     </a>
                     <p>{{ movie.name }}</p>
