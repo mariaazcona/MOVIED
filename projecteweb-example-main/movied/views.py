@@ -82,7 +82,7 @@ def confirm_reservation(request, id_cinema, id_movie):
             num_tickets=num_people,
             id_client=request.user,
             movie=movie,
-            cinema=cinema
+            cinema_id=cinema
         )
         new_reservation.save()
     return redirect('list_movies', id_cinema=id_cinema)

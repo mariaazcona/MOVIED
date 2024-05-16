@@ -32,7 +32,7 @@ class Reservation(models.Model):
     id_client = models.ForeignKey(User, on_delete=models.CASCADE)
     num_tickets = models.IntegerField(default=None)
     showtime = models.IntegerField(default=None)
-    cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE, default=None, null=True)
+    cinema_id = models.ForeignKey(Cinema, on_delete=models.CASCADE, default=None, null=True)
 
     def __str__(self):
         return str(self.id_reservation)
