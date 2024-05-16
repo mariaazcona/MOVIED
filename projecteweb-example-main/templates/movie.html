@@ -4,7 +4,8 @@
     <div class="background-overlay"></div>
     {% if movie %}
         <div class="movie-details-container">
-            <h1 class="movie-title">{{ movie.name }}</h1>
+            <h1 class="movie-title"
+                style="font-family: Monospaced, sans-serif; text-transform: uppercase; font-weight: bold;">{{ movie.name }}©</h1>
             <div class="movie-content">
                 <div class="movie-details">
                     <p><strong>Year:</strong> {{ movie.year }}</p>
@@ -14,16 +15,24 @@
                     <p><strong>Description:</strong> {{ movie.overview }}</p>
                 </div>
                 <div class="movie-poster">
-                    <img src="{{ movie.poster }}" alt="{{ movie.name }} Poster">
+                    <img src="{{ movie.poster }}" alt="{{ movie.name }} Poster"
+                         style="border: 1px solid #000; border-radius: 5px; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);">
                 </div>
             </div>
-            <h2 class="reservation-header">Book Your Tickets</h2>
+        </div>
+
+        <div class="reservation-container">
+            <div class="reservation-header-container">
+                <a href="{% url 'list_movies' id_cinema %}"
+                   class="btn-back">Back</a>
+                <h2 class="reservation-header">Book Your Tickets</h2>
+            </div>
             <form method="post" action="{% url 'confirm-reservation' id_cinema movie.id_movie %}" id="reservation-form">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="showtime">Select Showtime:</label>
                     <select id="showtime" name="showtime" required>
-                        <option value="" disabled selected>Select a time</option>
+                        <option value="" disabled selected>Time</option>
                         <option value="18">18:00</option>
                         <option value="20">20:00</option>
                         <option value="22">22:00</option>
@@ -60,6 +69,7 @@
             display: inline-block;
             border-radius: 10px;
             border: 2px solid #000;
+            margin-bottom: 20px;
         }
 
         .movie-title {
@@ -92,8 +102,69 @@
             max-height: 300px;
         }
 
+        .reservation-container {
+            background-color: lightblue;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            border: 2px solid #000;
+            width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .reservation-header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .btn-back {
+            padding: 7px 14px;
+            background-color: ivory;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 1.5px solid #000;
+            font-weight: bold;
+        }
+
         .reservation-header {
-            margin-top: 40px;
+            margin: 0 auto;
+            font-size: 24px;
+            font-family: Monospaced, sans-serif;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        select, input {
+            display: block;
+            margin: 0 auto;
+            padding: 5px;
+            width: 50%;
+        }
+
+        .reserve-button {
+            display: block;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            background-color: darkblue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
         }
 
         .background-overlay {

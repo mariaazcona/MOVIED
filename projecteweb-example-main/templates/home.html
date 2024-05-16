@@ -2,8 +2,10 @@
 
 {% block content %}
     <div class="background-overlay"></div>
-    <button style="font-size: 20px; padding: 10px 20px;"><a href="{% url 'list-cinemas' %}">Go to movie list</a></button>
-    <button style="font-size: 20px; padding: 10px 20px;"><a href="{% url 'list-reservations' %}">My reservations</a></button>
+    <div class="button-container">
+        <button class="button"><a href="{% url 'list-cinemas' %}">Go to available cinemas</a></button>
+        <button class="button"><a href="{% url 'list-reservations' %}">Go to my reservations</a></button>
+    </div>
     <style>
         .background-overlay {
             position: fixed;
@@ -13,6 +15,39 @@
             height: 100%;
             background-color: rgba(255, 255, 255, 0.3);
             z-index: -1;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .button {
+            font-size: 20px;
+            padding: 20px 40px;
+            margin: 0 15px;
+            background-color: royalblue;
+            border: none;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            width: auto;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: steelblue;
         }
     </style>
 {% endblock %}
