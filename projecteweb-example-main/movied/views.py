@@ -35,12 +35,12 @@ def add_movies_api(request):
     return redirect('home')
 
 
-@login_required(login_url='login')
 def list_movies(request):
     movies = Movie.objects.all()
     return render(request, "list_movies.html", {"movies": movies})
 
 
+@login_required(login_url='login')
 def movie_reservation(request, id_movie):
     movie = get_object_or_404(Movie, id_movie=id_movie)
     context = {
@@ -50,6 +50,7 @@ def movie_reservation(request, id_movie):
     return render(request, 'movie.html', context)
 
 
+@login_required(login_url='login')
 def confirm_reservation(request, id_movie):
     if request.method == 'POST':
         showtime = request.POST.get('showtime')
@@ -62,9 +63,10 @@ def confirm_reservation(request, id_movie):
             movie=movie,
         )
         new_reservation.save()
-    # return HttpResponse(f"Reserva confirmada para {num_people} personas a las {showtime} horas para la película {movie.name}")
     return redirect('list_movies')
 
 
+@login_required(login_url='login')
 def list_reservations(request):
-    return redirect('list_movies')
+    reservations = Reservation.objects.filter(id_client=request.user.id)
+    return render(request, "list_reservations.html", {"reservations": reservations})

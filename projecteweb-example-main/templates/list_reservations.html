@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>My reservations</h1>
+    {% if reservations %}
+        <div class="reservation-container">
+            {% for reservation in reservations %}
+                <div class="reservation">
+                    <h3>{{ reservation.movie.name }}</h3>
+                    <p><strong>Showtime:</strong> {{ reservation.showtime }}:00</p>
+                    <p><strong>Number of Tickets:</strong> {{ reservation.num_tickets }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No reservations.</p>
+    {% endif %}
+    <style>
+        .reservation {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .reservation-container {
+            margin-top: 20px;
+        }
+    </style>
+{% endblock %}
