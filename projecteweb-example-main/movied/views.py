@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -48,18 +50,21 @@ def movie_reservation(request, id_movie):
     return render(request, 'movie.html', context)
 
 
-def confirm_reservation(request):
+def confirm_reservation(request, id_movie):
     if request.method == 'POST':
         showtime = request.POST.get('showtime')
         num_people = request.POST.get('num_people')
-        movie_id = request.POST.get('movie_id')
+        movie = get_object_or_404(Movie, id_movie=id_movie)
         new_reservation = Reservation(
-            showtime=showtime,
+            showtime=int(showtime),
             num_tickets=num_people,
             id_client=request.user,
-            movie=get_object_or_404(Movie, id_movie=movie_id),
+            movie=movie,
         )
         new_reservation.save()
-        return HttpResponse(f"Reserva confirmada para {num_people} personas a las {showtime} horas para la película {movie.name}")
-    movies = Movie.objects.all()
-    return render(request, 'list_movies.html', {"movies": movies})
+    # return HttpResponse(f"Reserva confirmada para {num_people} personas a las {showtime} horas para la película {movie.name}")
+    return redirect('list_movies')
+
+
+def list_reservations(request):
+    return redirect('list_movies')

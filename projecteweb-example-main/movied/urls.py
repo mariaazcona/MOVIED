@@ -5,5 +5,6 @@ urlpatterns = [
     path("", v.list_movies, name="list_movies"),
     path("add-movies", v.add_movies_api, name="add_movies"),
     path("<int:id_movie>/", v.movie_reservation, name='movie-reservation'),
-    path("", v.confirm_reservation, name='confirm-reservation'),
+    path("create/<int:id_movie>/", v.confirm_reservation, name='confirm-reservation'),
+    path("reservations", v.list_reservations, name='list_reservations')
 ]

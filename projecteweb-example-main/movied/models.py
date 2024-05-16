@@ -20,10 +20,9 @@ class Movie(models.Model):
 class Reservation(models.Model):
     id_reservation = models.AutoField(primary_key=True)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, default=None, null=True)
-    date = models.DateTimeField()
     id_client = models.ForeignKey(User, on_delete=models.CASCADE)
     num_tickets = models.IntegerField(default=None)
     showtime = models.IntegerField(default=None)
 
     def __str__(self):
-        return self.id_reservation
+        return str(self.id_reservation)
