@@ -5,7 +5,7 @@
 This project contains the implementation of a web-based application, called MOVIED, which is the deliverable project for the Web Project subject in computer engineering (UdL).
 
 ## Project idea and implementation
-Our website, named MOVIED, is designed to allow users to make reservations to watch movies at different cinemas. The users can create a profile, enter their personal area, check the cinemas and movies available in each cinema, get tickets for the movie they are interested in, check their reservations, and cancel or modify them. Additionally, it provides detailed information about the movies and their showtimes. We can find data such as TITLE (movie title), GENRE (movie genre), PRICE (movie visualization price), and DESCRIPTION (brief description of the movie).  
+Our website, named MOVIED, is designed to allow users to make reservations to watch movies at different cinemas. The users can create a profile, enter their personal area, check the cinemas and movies available in each cinema, get tickets for the movie they are interested in, check their reservations, and cancel or modify them. Additionally, it provides detailed information about the movies and their showtimes. We can find data such as TITLE (movie title), GENRE (movie genre), PRICE (movie visualization price), and DESCRIPTION (brief description of the movie). Although our original idea was to create a website for users to rate films (as seen in deliverable 1), we have made the decision to change the idea in order to lower the difficulty of the implementation. This way, we have been able to assign better roles to both models and users' actions (reservtions being the objects created, edited or deleted by clients).
 
 The registration process focuses on both Log-In and Sign Up, the access to the personal area is required to do the restricted actions (book tickets, access personal area to check and modify reservations...). The Sign-Up section checks password formats for security purposes. To facilitate navigation, we have added a header that displays the available options on all pages. Users can easily move around the site using the menu in the top bar.
 
@@ -38,6 +38,6 @@ http://localhost:8000/movied/add-cinemas
 ```
 
 ### Step 4 - Navigate through the application
-The application should be running in your browser with the data imported. You can now navigate through it, create a profile, check the cinemas, movies, book tickets, access your personal area to check your reservations, modify and cancel your tickets. 
+The application should be running in your browser with the data imported. You can now navigate through it, create a profile, check the cinemas, movies, book tickets, access your personal area to check your reservations, modify and cancel your tickets. To acces the admin website, we have created the following superuser: username:superuser, password:superuser.
 
 
