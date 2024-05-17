@@ -1,29 +1,43 @@
 # DELIVERABLE REPORT 1
 ### AUTHORS: Maria Azcona Garcia, Neus Fernández Valls, Eric Hernández Rodríguez & Marçal Piró Patau
 
-<br>
+## Introduction
+This project contains the implementation of a web-based application, called MOVIED, which is the deliverable project for the Web Project subject in computer engineering (UdL).
 
-Our website, named MOVIED, is based on a model of movie information and rating. Data such as TITLE (movie title), NAME (actor name), BUDGET, or RATING are implemented. In order to carry out this project, we have divided the work into two parts: front-end and back-end.
+## Project idea and implementation
+Our website, named MOVIED, is designed to allow users to make reservations to watch movies at different cinemas. The users can create a profile, enter their personal area, check the cinemas and movies available in each cinema, get tickets for the movie they are interested in, check their reservations, and cancel or modify them. Additionally, it provides detailed information about the movies and their showtimes. We can find data such as TITLE (movie title), GENRE (movie genre), PRICE (movie visualization price), and DESCRIPTION (breve description of the movie).  
 
-Regarding the front-end, the page focuses on both Log In and Sign Up. The Sign Up section checks password formats for security purposes. To facilitate navigation, we have added a header that displays the available options on all pages. Users can easily move around the site using the menu in the top bar.
+The registration process focuses on both Log-In and Sign Up, the access to the personal area is required to do the restricted actions (book tickets, access personal area to check and modify reservations...). The Sign-Up section checks password formats for security purposes. To facilitate navigation, we have added a header that displays the available options on all pages. Users can easily move around the site using the menu in the top bar.
 
-As for the page's style, we aimed to contrast an image with different colors and shapes with a white frame to highlight the buttons. We have also included our logo on the website, as well as a button with the name MOVIED that redirects to the main page.
+To display the information of the movies available, we used a free API: https://api.andrespecht.dev/movies 
 
-<br>
-<img src="https://github.com/mariaazcona/MOVIED/blob/main/projecteweb-example-main/static/fondo.webp" alt="MOVIED Background">
-<p style="text-align: center;">This is the background used in our website!</p>
-<br>
+As for the page's style, we aimed to contrast an image with different colours and shapes with a white frame to highlight the buttons. We have also included our logo on the website, as well as a button with the name MOVIED that redirects to the main page. Our priority has been the simplicity of the page so that all the buttons, information and different functionalities can be seen and used easily by the final user, and at the same time, we used vivid colours so that the web application is attractive and appealing. 
 
-Concerning the back-end section, we have made slight alterations to the models presented in our initial web project proposal, resulting in this new class diagram:
+## How to run the web appplication
+### Step 1 - Migrations
+Run the following commands in the project terminal to make the migrations and apply them. This is necessary to create the models used in the application.
+```
+python manage.py makemigrations
+python manage.py migrate
+```
 
-<br>
-<img src="https://github.com/mariaazcona/MOVIED/blob/main/MOVIED_Models_Diagram.drawio.png" alt="MOVIED Models Diagram">
-<p style="text-align: center;">(still subject to changes)</p>
-<br>
+### Step 2 - Run de project
+Make sure that you have installed poetry in your computer. Run the project in your local host by entering the following command in the project terminal:
+```
+poetry run python manage.py runserver
+```
 
-Given our plans to integrate an API in the upcoming release, which will enable us to fetch comprehensive movie details, we foresee a shift in our data model towards prioritizing specific attributes of each movie. These attributes constitute the subset of data we intend to retain within our database infrastructure. Consequently, as a provisional measure for presentation purposes, we have embedded certain movie data directly within the current release.
+### Step 3 - Import data
+Now the web application should be running in your local host, but the data is not yet imported. To do so, go to the following path, which will execute the code necessary to import the movie infomation from the API: 
+```
+http://localhost:8000/movied/add-movies
+```
+The movie data is now imported. Access this other path to import the cinema information: 
+```
+http://localhost:8000/movied/add-cinemas
+```
 
-In summary, the development of MOVIED has progressed significantly in this first deliverable. We have established a solid foundation both in the front-end and back-end, implementing key features such as user authentication and visually appealing design. Additionally, we have adapted our data model to accommodate future integrations, such as the use of an API to fetch detailed movie information. As we continue with development, we remain committed to maintaining the quality and usability of the platform, providing our users with an exceptional experience when interacting with MOVIED.
-
+### Step 4 - Navigate through the application
+The application should be running in your browser with the data imported. You can now navigate through it, create a profile, check the cinemas, movies, book tickets, access your personal area to check your reservations, modify and cancel your tickets. 
 
 
