@@ -1,14 +1,15 @@
 from datetime import datetime
-
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
-from .models import *
+from movied.models import *
 import requests
 import random
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.shortcuts import render, get_object_or_404, redirect
+from accounts.forms import ReservationForm
 
 API = 'https://api.andrespecht.dev/movies'
 
@@ -98,8 +99,23 @@ def list_cinemas(request):
     cinemas = Cinema.objects.all()
     return render(request, "list_cinemas.html", {"cinemas": cinemas})
 
+
 @login_required
 def delete_reservation(request, id_reservation):
     reservation = Reservation.objects.get(id_reservation=id_reservation)
     reservation.delete()
     return redirect('list-reservations')
+
+
+@login_required
+def edit_reservation(request, id_reservation):
+    reservation = get_object_or_404(Reservation, id_reservation=id_reservation)
+    if request.method == 'POST':
+        form = ReservationForm(request.POST, instance=reservation)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Reservation updated successfully.')
+            return redirect('list-reservations')
+    else:
+        form = ReservationForm(instance=reservation)
+    return render(request, 'edit_reservation.html', {'form': form})

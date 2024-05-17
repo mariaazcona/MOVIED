@@ -10,4 +10,5 @@ urlpatterns = [
     path("reservations", v.list_reservations, name='list-reservations'),
     path("cinemas", v.list_cinemas, name='list-cinemas'),
     path("reservations/<int:id_reservation>/delete", v.delete_reservation, name='delete-reservation'),
+    path("reservations/<int:id_reservation>/edit", v.edit_reservation, name='edit-reservation'),
 ]
