@@ -9,5 +9,5 @@ urlpatterns = [
     path("<int:id_cinema>/create/<int:id_movie>/", v.confirm_reservation, name='confirm-reservation'),
     path("reservations", v.list_reservations, name='list-reservations'),
     path("cinemas", v.list_cinemas, name='list-cinemas'),
-
+    path("reservations/<int:id_reservation>/delete", v.delete_reservation, name='delete-reservation'),
 ]

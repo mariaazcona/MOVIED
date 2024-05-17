@@ -97,3 +97,9 @@ def list_reservations(request):
 def list_cinemas(request):
     cinemas = Cinema.objects.all()
     return render(request, "list_cinemas.html", {"cinemas": cinemas})
+
+@login_required
+def delete_reservation(request, id_reservation):
+    reservation = Reservation.objects.get(id_reservation=id_reservation)
+    reservation.delete()
+    return redirect('list-reservations')

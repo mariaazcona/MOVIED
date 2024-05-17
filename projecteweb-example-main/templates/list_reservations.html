@@ -14,7 +14,8 @@
                     <h3>{{ reservation.movie.name }}</h3>
                     <p><strong>Showtime:</strong> {{ reservation.showtime }}h00</p>
                     <p><strong>Number of Tickets:</strong> {{ reservation.num_tickets }}</p>
-                    <p><strong>Cinema:</strong> {{ reservation.cinema.name }}</p>
+                    <p><strong>Cinema:</strong> {{ reservation.cinema_id.name }}</p>
+                    <a href="{% url 'delete-reservation' id_reservation=reservation.id_reservation %}">Delete</a>
                 </div>
             {% endfor %}
         </div>
