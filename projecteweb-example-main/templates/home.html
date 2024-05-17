@@ -3,8 +3,8 @@
 {% block content %}
     <div class="background-overlay"></div>
     <div class="button-container">
-        <button class="button"><a href="{% url 'list-cinemas' %}">Go to available cinemas</a></button>
-        <button class="button"><a href="{% url 'list-reservations' %}">Go to my reservations</a></button>
+        <a href="{% url 'list-cinemas' %}" class="button">Go to available cinemas</a>
+        <a href="{% url 'list-reservations' %}" class="button">Go to my reservations</a>
     </div>
     <style>
         .background-overlay {
@@ -34,16 +34,10 @@
             border-radius: 10px;
             cursor: pointer;
             text-decoration: none;
-            width: auto;
-            height: auto;
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        .button a {
-            color: white;
-            text-decoration: none;
+            transition: background-color 0.3s ease;
         }
 
         .button:hover {
