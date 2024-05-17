@@ -21,7 +21,7 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-### Step 2 - Run de project
+### Step 2 - Run the project
 Make sure that you have installed poetry in your computer. Run the project in your local host by entering the following command in the project terminal:
 ```
 poetry run python manage.py runserver
