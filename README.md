@@ -40,4 +40,17 @@ http://localhost:8000/movied/add-cinemas
 ### Step 4 - Navigate through the application
 The application should be running in your browser with the data imported. You can now navigate through it, create a profile, check the cinemas, movies, book tickets, access your personal area to check your reservations, modify and cancel your tickets. To acces the admin website, we have created the following superuser: username:superuser, password:superuser.
 
+## Step 5 - Testing
+The testing of the project has been implemented using the playwright tool. There are tests for every action (create, edit, delete) implemented for one and multiple objects at the same time. We also tested the signup, login and logout. 
 
+To run the tests you need to open a new terminal while the project is running and execute this command: 
+
+*Make sure that the tests are being run in the order that indicate the numbers of the test files. 
+
+```
+pytest
+```
+
+
+
+* Note that despite github only showing commits from one or two people, all members of the group have worked equally during the implementation of this project.
