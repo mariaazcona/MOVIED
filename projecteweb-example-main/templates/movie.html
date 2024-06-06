@@ -1,37 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="background-overlay"></div>
+    <div class="background-overlay" property="schema:background-overlay"></div>
     {% if movie %}
-        <div class="movie-details-container">
+        <div class="movie-details-container" typeof="schema:Movie schema:MovieTheater">
             <h1 class="movie-title"
-                style="font-family: Monospaced, sans-serif; text-transform: uppercase; font-weight: bold;">{{ movie.name }}©</h1>
+                style="font-family: Monospaced, sans-serif; text-transform: uppercase; font-weight: bold;"
+                property="schema:name">{{ movie.name }}©</h1>
             <div class="movie-content">
                 <div class="movie-details">
-                    <p><strong>Year:</strong> {{ movie.year }}</p>
-                    <p><strong>Duration:</strong> {{ movie.duration }}</p>
-                    <p><strong>Price:</strong> {{ movie.price }}</p>
-                    <p><strong>Genre:</strong> {{ movie.genre }}</p>
-                    <p><strong>Description:</strong> {{ movie.overview }}</p>
+                    <p><strong>Year:</strong> <span property="schema:datePublished">{{ movie.year }}</span></p>
+                    <p><strong>Duration:</strong> <span property="schema:duration">{{ movie.duration }}</span></p>
+                    <p><strong>Price:</strong> <span property="schema:priceRange">{{ movie.price }}</span></p>
+                    <p><strong>Genre:</strong> <span property="schema:genre">{{ movie.genre }}</span></p>
+                    <p><strong>Description:</strong> <span property="schema:description">{{ movie.overview }}</span></p>
                 </div>
                 <div class="movie-poster">
                     <img src="{{ movie.poster }}" alt="{{ movie.name }} Poster"
-                         style="border: 1px solid #000; border-radius: 5px; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);">
+                         style="border: 1px solid #000; border-radius: 5px; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);"
+                         property="schema:image">
                 </div>
             </div>
         </div>
-
-        <div class="reservation-container">
+        <div class="reservation-container" typeof="schema:Event">
             <div class="reservation-header-container">
                 <a href="{% url 'list_movies' id_cinema %}"
-                   class="btn-back">Back</a>
-                <h2 class="reservation-header">Book Your Tickets</h2>
+                   class="btn-back" rel="schema:url">Back</a>
+                <h2 class="reservation-header" property="schema:name">Book Your Tickets</h2>
             </div>
-            <form method="post" action="{% url 'confirm-reservation' id_cinema movie.id_movie %}" id="reservation-form">
+            <form method="post" action="{% url 'confirm-reservation' id_cinema movie.id_movie %}" id="reservation-form"
+                  typeof="schema:Reservation schema:Event">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="showtime">Select Showtime:</label>
-                    <select id="showtime" name="showtime" required>
+                    <label for="showtime" property="schema:startDate">Select Showtime:</label>
+                    <select id="showtime" name="showtime" required property="schema:doorTime">
                         <option value="" disabled selected>Time</option>
                         <option value="18">18:00</option>
                         <option value="20">20:00</option>
@@ -40,15 +42,17 @@
                 </div>
                 <div class="form-group">
                     <label for="num_people">Select tickets:</label>
-                    <input type="number" id="num_people" name="num_people" min="1" max="10" required>
+                    <input type="number" id="num_people" name="num_people" min="1" max="10" required
+                           property="schema:numberOfSeats">
                 </div>
-                <button type="submit" value="Add" name="sub_button" class="reserve-button">Confirm Reservation</button>
+                <button type="submit" value="Add" name="sub_button" class="reserve-button"
+                        property="schema:potentialAction">Confirm Reservation
+                </button>
             </form>
         </div>
     {% else %}
         <p>Movie not found</p>
     {% endif %}
-
     <script>
         document.getElementById('reservation-form').addEventListener('submit', function (event) {
             event.preventDefault();
@@ -178,4 +182,3 @@
         }
     </style>
 {% endblock %}
-

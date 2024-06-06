@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="background-overlay"></div>
-    <div class="reservation-container">
+    <div class="background-overlay" property="schema:background-overlay"></div>
+    <div class="reservation-container" typeof="schema:Reservation schema:Event">
         <div class="reservation-header-container">
-            <a href="{% url 'list-reservations' %}" class="btn-back">Back</a>
-            <h2 class="reservation-header">Edit Reservation</h2>
+            <a href="{% url 'list-reservations' %}" class="btn-back" property="schema:url">Back</a>
+            <h2 class="reservation-header" property="schema:name">Edit Reservation</h2>
         </div>
-
-        <form method="post">
+        <form method="post" property="schema:potentialAction">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" value="Add" name="sub_button" class="reserve-button">Save changes</button>
+            <button type="submit" value="Add" name="sub_button" class="reserve-button"
+                    property="schema:potentialAction">Save changes
+            </button>
         </form>
     </div>
 

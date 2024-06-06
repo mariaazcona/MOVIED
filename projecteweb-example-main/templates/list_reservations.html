@@ -1,22 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="background-overlay"></div>
-    <div class="greeting-container">
-        <a class="navbar-brand" style="font-size: larger; font-weight: bold;">MY RESERVATIONS</a>
+    <div class="background-overlay" property="schema:background-overlay"></div>
+    <div class="greeting-container" typeof="schema:WebPage">
+        <a class="navbar-brand" style="font-size: larger; font-weight: bold;" property="schema:name">MY RESERVATIONS</a>
         <a href="{% url 'home' %}"
-           class="btn-back">Back</a>
+           class="btn-back" property="schema:url">Back</a>
     </div>
     {% if reservations %}
-        <div class="reservation-container">
+        <div class="reservation-container" typeof="schema:Event">
             {% for reservation in reservations %}
-                <div class="reservation">
-                    <h3>{{ reservation.movie.name }}</h3>
-                    <p><strong>Showtime:</strong> {{ reservation.showtime }}h00</p>
-                    <p><strong>Number of Tickets:</strong> {{ reservation.num_tickets }}</p>
-                    <p><strong>Cinema:</strong> {{ reservation.cinema_id.name }}</p>
-                    <a href="{% url 'delete-reservation' id_reservation=reservation.id_reservation %}">Delete</a>
-                    <a href="{% url 'edit-reservation' id_reservation=reservation.id_reservation %}">Edit</a>
+                <div class="reservation" typeof="schema:Reservation schema:Event">
+                    <h3 property="schema:name">{{ reservation.movie.name }}</h3>
+                    <p><strong property="schema:startDate">Showtime:</strong> <span
+                            property="schema:doorTime">{{ reservation.showtime }}h00</span></p>
+                    <p><strong property="schema:maximumAttendeeCapacity">Number of Tickets:</strong>
+                        <span>{{ reservation.num_tickets }}</span></p>
+                    <p><strong property="schema:location">Cinema:</strong> <span
+                            property="schema:name">{{ reservation.cinema_id.name }}</span></p>
+                    <a href="{% url 'delete-reservation' id_reservation=reservation.id_reservation %}"
+                       property="schema:url">Delete</a>
+                    <a href="{% url 'edit-reservation' id_reservation=reservation.id_reservation %}"
+                       property="schema:url">Edit</a>
                 </div>
             {% endfor %}
         </div>

@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="background-overlay"></div>
-    <div class="greeting-container">
-        <a class="navbar-brand" style="font-size: larger; font-weight: bold;">Available Cinemas</a>
-        <a href="{% url 'home' %}"
-           class="btn-back">Back</a>
+    <div class="background-overlay" property="schema:background-overlay"></div>
+    <div class="greeting-container" typeof="schema:WebPage">
+        <a class="navbar-brand" style="font-size: larger; font-weight: bold;" property="schema:name">Available
+            Cinemas</a>
+        <a href="{% url 'home' %}" class="btn-back" property="schema:url">Back</a>
     </div>
     {% if cinemas %}
         <div class="cinema-container">
             {% for cinema in cinemas %}
-                <div class="cinema">
-                    <a href="{% url 'list_movies' cinema.id_cinema %}">
-                        <button> {{ cinema.name }} </button>
+                <div class="cinema" typeof="schema:MovieTheater">
+                    <a href="{% url 'list_movies' cinema.id_cinema %}" property="schema:url">
+                        <button property="schema:name"> {{ cinema.name }} </button>
                     </a>
                 </div>
             {% endfor %}
